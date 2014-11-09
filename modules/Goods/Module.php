@@ -18,19 +18,19 @@ class Module extends AbstractModule
     }
 
 
-    public function registerServices($di)
-    {	
+    // public function registerServices($di)
+    // {	
 
-    	 //Registering a dispatcher
-        $di->set('dispatcher', function() {
-            $dispatcher = new Dispatcher();
-            $dispatcher->setDefaultNamespace($this->ModuleName . "\Controllers");
-            return $dispatcher;
-        });
-
-    	$di->get('view')->setViewsDir( '../views/templates/' . $this->ModuleName);
-        $di->get('view')->setLayoutsDir( 'layout/' );
-        $di->get('view')->setTemplateAfter( 'layout') ;
-    }
+    // 	 // //Registering a dispatcher
+    //   //   $di->set('dispatcher', function() {
+    //   //       $dispatcher = new Dispatcher();
+    //   //       $dispatcher->setDefaultNamespace($this->ModuleName . "\Controllers");
+    //   //       return $dispatcher;
+    //   //   });
+    // 	$di->get('dispatcher')->setDefaultNamespace($this->ModuleName . "\Controllers");
+    // 	$di->get('view')->setViewsDir( '../views/templates/' . $this->ModuleName);
+    //     $di->get('view')->setLayoutsDir( 'layout/' );
+    //     $di->get('view')->setTemplateAfter( 'layout') ;
+    // }
 
 }

@@ -14,11 +14,13 @@ use Phalcon\DI\FactoryDefault;
 use Phalcon\Mvc\View;
 use Phalcon\Mvc\Router;
 use Phalcon\Mvc\Url as UrlResolver;
+use Phalcon\Mvc\Dispatcher;
 use Phalcon\Db\Adapter\Pdo\Mysql as DbAdapter;
-use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
+use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Mvc\Application;
+use Phalcon\Events\Manager as EventsManager;
 
 class PLaunch
 {
@@ -45,6 +47,8 @@ class PLaunch
         return $config;
 	}
 
+	
+
 	/**
 	 * @todo 注册加载
 	 */
@@ -59,23 +63,34 @@ class PLaunch
 		}
 	}
 
+	public function registerDispatcher(FactoryDefault $di)
+	{	
+		$config = $this->config;
+		$di->set('dispatcher', function () use ($config) {
+		    $eventsManager = new EventsManager;
+		    $dispatcher = new Dispatcher;
+			$dispatcher->setEventsManager($eventsManager);
+		    return $dispatcher;
+		}, true);
+	}
 	/**
 	 * @todo 注册路由
 	 */
 	public function registerRouter(FactoryDefault $di)
 	{
 		$di->set('router', function () {
-		    $router = new Router();
+			$router = new Router();
+
+			$router->setDefaultModule('index');
+	        $router->setDefaultController('index');
+	        $router->setDefaultAction('index');
+		    
 		    $router->add("/:module/:controller/:action", array(
 		        'module'     => 1,
 		        'controller' => 2,
 		        'action'     => 3,
 		    ));
-		    $router->add("[/]", array(
-		        'module'     => 'Index',
-		        'controller' => 'Index',
-		        'action'     => 'index',
-		    ));
+		   
 		    return $router;
 		});
 	}
@@ -97,20 +112,12 @@ class PLaunch
 		$config = $this->config;
 		$di->set('view', function () use ($config) {
 	    $view = new View();
-	    // $view->setLayoutsDir('../views/layouts/');
-	    // $view->setLayoutsDir($config->views->layout);
-     //    $view->setLayout('index');
-	    $view->registerEngines(array(
-		        '.volt' => function ($view, $di) use ($config) {
-		            $volt = new VoltEngine($view, $di);
-		            $volt->setOptions(array(
-		                'compiledPath' => $config->application->cacheDir,
-		                'compiledSeparator' => '_'
-		            ));
-		            return $volt;
-		        },
-		        '.phtml' => 'Phalcon\Mvc\View\Engine\Php'
-		    ));
+	     $view->registerEngines(array(
+            '.phtml' => function($view, $di) {
+                $phtml = new PhpEngine($view, $di);
+                return $phtml;
+            },
+        ));
 		    return $view;
 		}, true);
 	}
@@ -149,6 +156,7 @@ class PLaunch
 	protected function registerModules()
 	{	
 		if($this->application) {
+			var_dump($this->getRegisterModules());
 			$this->application->registerModules($this->getRegisterModules());
 		}
 	}
@@ -187,6 +195,7 @@ class PLaunch
 		$di = new FactoryDefault();
 		$this->registerNamespaces();
 		$this->registerRouter($di);
+		$this->registerDispatcher($di);
 		$this->registerUrl($di);
 		$this->registerView($di);
 		$this->registerDB($di);
@@ -194,6 +203,7 @@ class PLaunch
 		$this->registerSession($di);
 		$this->application =  new Application($di);
 		$this->registerModules();
+		
 		return $this;
 	}
 
