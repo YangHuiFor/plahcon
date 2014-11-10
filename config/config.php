@@ -2,19 +2,18 @@
 
 return new \Phalcon\Config(array(
     'database' => array(
-        'adapter'     => 'Mysql',
-        'host'        => 'localhost',
-        'username'    => 'root',
-        'password'    => '',
-        'dbname'      => 'test',
+        'adapter' => 'Mysql',
+        'host' => '192.168.1.33',
+        'username' => 'admin',
+        'password' => 'Admin_12345',
+        'dbname' => 'test',
     ),
     'application' => array(
-        'modulesDir'      => APP_PATH . '/modules/',
-        'commonDir'      => APP_PATH . '/common/',
-        'viewsDir'       => APP_PATH . '/views/templates/',
-        'libraryDir'     => APP_PATH . '/library/',
-        'cacheDir'       => APP_PATH . '/cache/',
-        'baseUri'        => '/',
+        'modulesDir' => APP_PATH . '/modules/',
+        'commonDir' => APP_PATH . '/common/',
+        'libraryDir' => APP_PATH . '/library/',
+        'cacheDir' => APP_PATH . '/cache/',
+        'baseUri' => '/',
     ),
     'namespaces' => [
         'Common' => APP_PATH . '/common/',
@@ -25,7 +24,10 @@ return new \Phalcon\Config(array(
         'Goods',
     ],
     'views' => [
-        'layout' => APP_PATH . '/views/layout',
+        'layouts' =>  '../../layouts/',
+        'layout_body' => 'index',
+        'error' => APP_PATH . '/views/error',
+        'templates' => APP_PATH . '/views/templates/',
     ],
 
 ));

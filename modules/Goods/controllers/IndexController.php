@@ -9,7 +9,7 @@ class IndexController extends AbstractController
 
     public function indexAction()
     {
-    	$this->view->disableLevel(4);
+        $this->view->disableLevel(4);
     }
 
 }
