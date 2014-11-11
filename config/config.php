@@ -1,11 +1,18 @@
 <?php
 
 return new \Phalcon\Config(array(
-    'database' => array(
+    // 'database' => array(
+    //     'adapter' => 'Mysql',
+    //     'host' => '192.168.1.33',
+    //     'username' => 'admin',
+    //     'password' => 'Admin_12345',
+    //     'dbname' => 'test',
+    // ),
+     'database' => array(
         'adapter' => 'Mysql',
-        'host' => '192.168.1.33',
-        'username' => 'admin',
-        'password' => 'Admin_12345',
+        'host' => '127.0.0.1',
+        'username' => 'root',
+        'password' => '',
         'dbname' => 'test',
     ),
     'application' => array(

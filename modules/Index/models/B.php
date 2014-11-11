@@ -10,13 +10,14 @@ namespace Index\Models;
 
 use Common\AbstractModel;
 
-class AModel extends AbstractModel
+class B extends AbstractModel
 {
 
     public function initialize()
     {
-        $this->className = ltrim(str_replace("Model",'',str_replace(__NAMESPACE__, '', __CLASS__)), "\\");
-        $this->hasMany("id", "B", "a_id");
+        // $this->className = ltrim(str_replace("Model",'',str_replace(__NAMESPACE__, '', __CLASS__)), "\\");
+        $this->className = ltrim(str_replace(__NAMESPACE__, '', __CLASS__), "\\");
+        $this->belongsTo("id", "A", "id");
     }
 
     public function select()

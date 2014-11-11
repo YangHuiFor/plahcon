@@ -15,7 +15,7 @@ class IndexController extends AbstractController
 //        $this->view->pick('index/list');
         //禁止渲染主体模板LEVEL_LAYOUT
 //        $this->view->disableLevel(3);
-        $a = new AModel();
+        $a = new A();
         $result= $a->select();
         functions::dump($result->toArray());die;
     }

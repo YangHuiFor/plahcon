@@ -191,7 +191,9 @@ class PLaunch
     }
 
     public function register()
-    {
+    {	
+    	$debug = new \Phalcon\Debug();
+        $debug->listen();
         $di = new FactoryDefault();
         $this->registerConfig($di);
         $this->registerNamespaces();
