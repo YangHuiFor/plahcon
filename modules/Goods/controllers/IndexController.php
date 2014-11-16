@@ -5,9 +5,9 @@ namespace Goods\Controllers;
 use Common\AbstractController;
 use Phalcon\Mvc\View;
 
-use Goods\Models\Robots;
-use Goods\Models\Parts;
-use Goods\Models\RobotsParts;
+// use Goods\Models\Robots;
+// use Goods\Models\Parts;
+// use Goods\Models\RobotsParts;
 class IndexController extends AbstractController
 {
 
@@ -41,10 +41,11 @@ class IndexController extends AbstractController
 		// $robot->save();
 		    // \Common\functions::dump($robot->toArray());die;
 
-		$robot = new Robots;
-		$robot->name='test1';
-		$robot->year='2014';
-		$robot->save();
+		// $robot = new Robots;
+		// $robot->name='test1';
+		// $robot->year='2014';
+		// $robot->save();
+
         $this->view->disableLevel(4);
     }
 

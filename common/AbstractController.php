@@ -6,5 +6,5 @@ use Phalcon\Mvc\Controller;
 
 class AbstractController extends Controller
 {
-
+	
 }

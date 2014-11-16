@@ -11,7 +11,9 @@ namespace Index\Models;
 use Common\AbstractModel;
 
 class IndexModel extends AbstractModel
-{	
+{		
+
+
 	public function initialize()
 	{
 		//必须继承

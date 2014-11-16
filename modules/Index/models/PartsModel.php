@@ -1,10 +1,10 @@
 <?php
 
-namespace Goods\Models;
+namespace Index\Models;
 
 use \Common\AbstractModel;
 
-class Parts extends AbstractModel
+class PartsModel extends AbstractModel
 {
 
     public $id;
@@ -14,6 +14,7 @@ class Parts extends AbstractModel
     public function initialize()
     {
         $this->hasMany("id", "RobotsParts", "parts_id");
+        $this->setSchema ('vp_basic');
         //必须继承
         parent::initialize();
     }

@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: è¾‰
+ * User: »Ô
  * Date: 2014/11/10
  * Time: 19:17
  */
@@ -10,18 +10,39 @@
 namespace Common;
 
 use Phalcon\Mvc\Model;
+use Phalcon\Text;
+use Engine\Db\Connection;
 
 class AbstractModel extends Model
-{
-    public $className;
+{   
+    use Connection;
+    public $_class_name;
+    public $_table_prefix;
 
-    public function getSource()
+
+    public function initialize()
     {
-        return 't_' . strtolower($this->className);
+    	$this->_initConnection();
+        $this->setReadConnectionService("dbSlave");
     }
 
-//    public function initialize()
-//    {
-////        $this->className = ltrim(str_replace("Model",'',str_replace(__NAMESPACE__, '', __CLASS__)), "\\");
-//    }
+    /**
+     * @todo »ñÈ¡±í×ÊÔ´Ãû
+     */
+    public function getSource()
+    {				   
+    	//±íÇ°×º
+    	$this->_table_prefix = $this->getDI()->get("config")->database->prefix;
+    	//¾ÛºÏ±íÇ°×ººÍ±íÃæ
+    	$namespaceArr = explode("\\",get_class($this));
+    	if (isset($namespaceArr[2])) {
+    		//¹ýÂËmodelºó×º
+    		$tableName = str_replace("Model", "", $namespaceArr[2]);
+    		//´óÐ´×ª»»³ÉÐ¡Ð´¼Ó_
+    		$tableName = Text::uncamelize($tableName);
+    		$sourceName =  $this->_table_prefix . $tableName;
+    		return $sourceName;
+    	}
+    }
+
 } 

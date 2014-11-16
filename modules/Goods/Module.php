@@ -22,13 +22,13 @@ class Module extends AbstractModule
         /**
          * @todo 覆盖上一级，重置
          */
-//    public function registerServices($di)
-//    {
-//        $di->get('dispatcher')->setDefaultNamespace($this->ModuleName . "\Controllers");
-//        $di->get('view')->setViewsDir('../views/templates/' . $this->ModuleName);
-//        //重置视图主体
-//        $di->get('view')->setLayoutsDir('layout/');
-//        $di->get('view')->setTemplateAfter('layout');
-//    }
+   /**public function registerServices($di)
+   {
+       $di->get('dispatcher')->setDefaultNamespace($this->ModuleName . "\Controllers");
+       $di->get('view')->setViewsDir('../views/templates/' . $this->ModuleName);
+       //重置视图主体
+       $di->get('view')->setLayoutsDir('layout/');
+       $di->get('view')->setTemplateAfter('layout');
+   }**/
 
 }

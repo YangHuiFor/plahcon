@@ -21,7 +21,8 @@ use Phalcon\Mvc\Model\Metadata\Memory as MetaDataAdapter;
 use Phalcon\Session\Adapter\Files as SessionAdapter;
 use Phalcon\Mvc\Application;
 use Phalcon\Events\Manager as EventsManager;
-
+use Phalcon\Logger\Adapter\File as FileLogger;
+use Plugin\NotFoundPlugin;
 class PLaunch
 {
     protected $config;
@@ -46,7 +47,7 @@ class PLaunch
         if (is_null($config)) {
             $config = include APP_PATH . self::APP_CONFIG_PATH . '/config.php';
         }
-        $di->set('config', $config);
+        $di->set('config', $config,true);
         $this->config = $config;
     }
 
@@ -59,7 +60,9 @@ class PLaunch
         if ($this->config->namespaces) {
             $loader = new Loader();
             $otherClass = (array)$this->config->namespaces->toArray();
-            $loader->registerNamespaces($otherClass)->register();
+            $moduleClass = $this->getRegisterModulesClass();
+            $class = array_merge($otherClass, $moduleClass);
+            $loader->registerNamespaces($class)->register();
         }
     }
 
@@ -68,6 +71,7 @@ class PLaunch
         $config = $this->config;
         $di->set('dispatcher', function () use ($config) {
             $eventsManager = new EventsManager;
+            $eventsManager->attach('dispatch:beforeException', new Plugin\NotFoundPlugin);
             $dispatcher = new Dispatcher;
             $dispatcher->setEventsManager($eventsManager);
             return $dispatcher;
@@ -124,18 +128,6 @@ class PLaunch
     }
 
 
-    public function registerDB(FactoryDefault $di)
-    {
-        $config = $this->config;
-        $di->set('db', function () use ($config) {
-            return new DbAdapter(array(
-                'host' => $config->database->host,
-                'username' => $config->database->username,
-                'password' => $config->database->password,
-                'dbname' => $config->database->dbname,
-            ));
-        });
-    }
 
     public function registerMeta(FactoryDefault $di)
     {
@@ -201,9 +193,11 @@ class PLaunch
         $this->registerDispatcher($di);
         $this->registerUrl($di);
         $this->registerView($di);
-        $this->registerDB($di);
         $this->registerMeta($di);
         $this->registerSession($di);
+        $di->set('modelsManager', function() {
+            return new Phalcon\Mvc\Model\Manager();
+         });
         $this->application = new Application($di);
         $this->registerModules();
 

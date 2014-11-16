@@ -1,40 +1,40 @@
 <?php
 
 return new \Phalcon\Config(array(
-    // 'database' => array(
-    //     'adapter' => 'Mysql',
-    //     'host' => '192.168.1.33',
-    //     'username' => 'admin',
-    //     'password' => 'Admin_12345',
-    //     'dbname' => 'test',
-    // ),
      'database' => array(
         'adapter' => 'Mysql',
-        'host' => '127.0.0.1',
+        'host' => array('127.0.0.1','127.0.0.2','127.0.0.3'),//第一个默认主库
         'username' => 'root',
         'password' => '',
         'dbname' => 'test',
+        'prefix' => 't_',
+        'charset' => 'utf8',
     ),
     'application' => array(
-        'modulesDir' => APP_PATH . '/modules/',
-        'commonDir' => APP_PATH . '/common/',
-        'libraryDir' => APP_PATH . '/library/',
-        'cacheDir' => APP_PATH . '/cache/',
+        'modulesDir' => APP_PATH . '/Modules/',
+        'commonDir' => APP_PATH . '/Common/',
+        'libraryDir' => APP_PATH . 'Llibraries/',
+        'cacheDir' => APP_PATH . '/Cache/',
+        'logsDir' => APP_PATH . '/_logs/',
         'baseUri' => '/',
+        'debug' => true
     ),
     'namespaces' => [
-        'Common' => APP_PATH . '/common/',
-        'Library' => APP_PATH . '/library/',
+        'Common' => APP_PATH . '/Common/',
+        'Library' => APP_PATH . '/Libraries/',
+        'Engine' => APP_PATH . '/Engines/',
+        'Plugin' => APP_PATH . '/Plugins/',
     ],
     'modules' => [
         'Index',
         'Goods',
+        'Demo',
     ],
     'views' => [
         'layouts' =>  '../../layouts/',
         'layout_body' => 'index',
-        'error' => APP_PATH . '/views/error',
-        'templates' => APP_PATH . '/views/templates/',
+        'errors' => APP_PATH . '/Views/errors',
+        'templates' => APP_PATH . '/Views/templates/',
     ],
 
 ));
