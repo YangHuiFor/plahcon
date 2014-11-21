@@ -6,17 +6,10 @@
  * @date 2014-11-10
  */
 namespace Common;
-class functions
+
+use Phalcon\functions as PhalconFunction;
+
+class functions extends PhalconFunction
 {
 
-    /**
-     * @todo 打印
-     */
-    public static function dump()
-    {
-        $argument = func_get_args();
-        echo "<pre>";
-        print_r($argument);
-        echo "</pre>";
-    }
 }

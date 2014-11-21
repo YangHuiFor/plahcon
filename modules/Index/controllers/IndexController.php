@@ -25,6 +25,7 @@ class IndexController extends AbstractController
         // 	echo $robotpart->parts->name;
         // }
         // die;
+//        throw new \Exception(1111);
         $output = array(
         	'res' => $res
         	);

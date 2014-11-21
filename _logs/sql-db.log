@@ -1,8 +1,0 @@
-[Sun, 16 Nov 14 15:56:46 +0100][INFO] INSERT INTO `t_robots` (`name`, `type`, `year`) VALUES (?, ?, ?) [valid,Mechanical,222]
-[Sun, 16 Nov 14 16:07:10 +0100][INFO] UPDATE `t_parts` SET `name` = ? WHERE `id` = ? [update,2]
-[Sun, 16 Nov 14 16:07:50 +0100][INFO] UPDATE `t_parts` SET `name` = ? WHERE `id` = ? [update,2]
-[Sun, 16 Nov 14 16:07:51 +0100][INFO] UPDATE `t_parts` SET `name` = ? WHERE `id` = ? [update,2]
-[Sun, 16 Nov 14 16:15:50 +0100][INFO] UPDATE `t_parts` SET `name` = ? WHERE `id` = ? [update,2]
-[Sun, 16 Nov 14 16:47:16 +0100][INFO] UPDATE `t_parts` SET `name` = ? WHERE `id` = ? [update2,2]
-[Sun, 16 Nov 14 16:48:07 +0100][INFO] UPDATE `t_parts` SET `name` = ? WHERE `id` = ? [update2,2]
-[Sun, 16 Nov 14 16:48:18 +0100][INFO] UPDATE `t_parts` SET `name` = ? WHERE `id` = ? [update2,2]
