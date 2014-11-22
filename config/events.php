@@ -8,5 +8,7 @@
  */
 
 return [
-    'dispatch' => 'Plugin\ExceptionMonitorPlugins',
+    'dispatch' => [
+    	'beforeException' => 'Plugin\ExceptionMonitorPlugins',
+    ],
 ];

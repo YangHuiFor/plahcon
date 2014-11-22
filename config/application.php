@@ -26,10 +26,11 @@ return [
         'Index',
         'Goods',
         'Demo',
+        'Business',
     ],
     'views' => [
-        'layouts' => '../../layouts/',
-        'layout_body' => 'index',
+        'layoutDir' => '../../layouts/',
+        'layoutBody' => 'index',
         'errors' => APP_PATH . '/Views/errors',
         'templates' => APP_PATH . '/Views/templates/',
     ],

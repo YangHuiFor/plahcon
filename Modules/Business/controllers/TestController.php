@@ -16,8 +16,8 @@ class TestController extends AbstractController
 
     	$robots = new \Goods\Models\RobotsModel;
    		$res=$robots->get();
-   		// var_dump($res->toArray());
-        // $this->view->disableLevel(4);
+   		var_dump($res->toArray());
+        $this->view->disableLevel(4);
     }
 
 

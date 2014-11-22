@@ -11,5 +11,5 @@ use Phalcon\functions as PhalconFunction;
 
 class functions extends PhalconFunction
 {
-
+	
 }

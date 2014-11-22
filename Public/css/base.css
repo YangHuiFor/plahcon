@@ -1,0 +1,35 @@
+.navbar {
+  margin-bottom: 0;
+}
+
+.sidebar {
+  background-color: #2C3E50;
+  min-height: 700px;
+}
+
+.sidebar .nav > li {
+  margin: 2px;
+  /*background: #34495e;*/
+    margin-right: -15px;
+  margin-left: -15px;
+
+}
+.sidebar .nav > li > a{
+  color: #fff;
+  border-radius:0;  
+  /*background: #34495E;*/
+}
+
+.sidebar .nav > li > a:hover{
+  background: #34495E;
+  color: #fff;
+}
+.sidebar .nav > .active > a{
+  background: #34495E;
+  color: #fff;
+}
+.footer {
+  color: #777;
+  padding: 30px 0;
+  border-top: 1px solid #e5e5e5;
+}

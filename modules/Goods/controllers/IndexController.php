@@ -9,7 +9,13 @@ use Phalcon\Mvc\View;
 // use Goods\Models\Parts;
 // use Goods\Models\RobotsParts;
 class IndexController extends AbstractController
-{
+{	
+
+	 public function initialize()
+    {
+        //Set the document title
+        $this->tag->setTitle("This's Vp Index | vp");
+    }
 
     public function indexAction()
     {	
@@ -45,9 +51,17 @@ class IndexController extends AbstractController
 		// $robot->name='test1';
 		// $robot->year='2014';
 		// $robot->save();
-
-        $this->view->disableLevel(4);
+		$this->session->set('test','222');
+    	$this->flash->success("The post was correctly saved!");
+    	// var_dump($_SESSION);die;
+        // $this->view->disableLevel(4);
     }
 
+
+
+    public function testAction()
+    {
+    	var_dump($this->view);die;
+    }
 }
 
