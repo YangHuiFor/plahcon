@@ -7,7 +7,7 @@
  */
 namespace Common;
 
-use Phalcon\functions as PhalconFunction;
+use \Phalcon\Common\functions as PhalconFunction;
 
 class functions extends PhalconFunction
 {

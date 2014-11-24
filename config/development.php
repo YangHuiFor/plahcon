@@ -10,7 +10,7 @@
 return [
     'path' => [
         'logs' => APP_PATH . '/_logs/',
-        'wf' => 'C:\wamp\www\vp\webFramework/',
+        'wf' => 'E:\www.vp.me\webFramework/',
     ],
     'debug' => [
         //sql日志

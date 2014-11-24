@@ -8,15 +8,15 @@ use Engine\Db\Connection;
 
 class ErrorsController extends AbstractController
 {
-    
+    protected $views;
     public function initialize()
     {
-        $views = $this->getDI()->get("config")->views;
-        $this->view->setViewsDir($views->errors);
+        $this->views = $this->getDI()->get("config")->views;
+        $this->view->setViewsDir($this->views->errors);
     }
 
     public function show404Action()
-    {  
+    {
         $this->view->pick('show404');
     }
 

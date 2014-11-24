@@ -22,8 +22,6 @@ class ExceptionMonitorPlugins extends Plugin
      */
     public function beforeException(Event $event, MvcDispatcher $dispatcher, $exception)
     {
-        var_dump($exception);
-        die;
         if ($exception instanceof DispatcherException) {
             switch ($exception->getCode()) {
                 case Dispatcher::EXCEPTION_HANDLER_NOT_FOUND:
